@@ -58,10 +58,32 @@
  
 ## 💡2. 팀원 소개
  
-| <img width="80" height="100" src="https://nooks-list.com/img/villagers/Roald.png"> | <img width="80" height="100" src="https://nooks-list.com/img/villagers/Pompom.png"> | <img width="80" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"> | <img width="80" height="100" src="assets/member4.png"> | <img width="80" height="100" src="https://nooks-list.com/img/villagers/Maple.png"> | <img width="80" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"> |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| **멘티1** | **멘티2** | **멘티3** | **멘티4** | **멘티5** | **멘토** |
-| • 하드웨어 기능 개발 <br> • 기기용 백엔드 API 설계 및 구현 <br> • RAG 기반 기억 검색 구조 구현 | • 얼굴 추적 및 표정 감정 인식 모델 학습 <br> • LLM 안전 가드레일 및 위험 발화 탐지 구현 <br> • 백엔드 API 및 AWS 배포·CI/CD 인프라 구축 | • Voice Cloning 기반 TTS 모듈 구현 <br> • LLM 연동 및 프롬프트 설계 | • 담당1 <br> • 담당2 | • 하드웨어 조립 및 제작 <br> • Flutter 앱 프론트엔드 개발 | • 프로젝트 멘토 <br> • 기술 자문 |
+<table>
+  <tr>
+    <td align="center" width="150"><img width="100" height="100" src="https://nooks-list.com/img/villagers/Roald.png"></td>
+    <td align="center" width="150"><img width="100" height="100" src="https://nooks-list.com/img/villagers/Pompom.png"></td>
+    <td align="center" width="150"><img width="100" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
+    <td align="center" width="150"><img width="100" height="100" src="assets/member4.png"></td>
+    <td align="center" width="150"><img width="100" height="100" src="https://nooks-list.com/img/villagers/Maple.png"></td>
+    <td align="center" width="150"><img width="100" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>멘티1</b></td>
+    <td align="center"><b>멘티2</b></td>
+    <td align="center"><b>멘티3</b></td>
+    <td align="center"><b>멘티4</b></td>
+    <td align="center"><b>멘티5</b></td>
+    <td align="center"><b>멘토</b></td>
+  </tr>
+  <tr>
+    <td valign="top">• 하드웨어 기능 개발<br>• 기기용 백엔드 API 설계 및 구현<br>• RAG 기반 기억 검색 구조 구현</td>
+    <td valign="top">• 얼굴 추적 및 표정 감정 인식 모델 학습<br>• LLM 안전 가드레일 및 위험 발화 탐지 구현<br>• 백엔드 API 및 AWS 배포·CI/CD 인프라 구축</td>
+    <td valign="top">• Voice Cloning 기반 TTS 모듈 구현<br>• LLM 연동 및 프롬프트 설계</td>
+    <td valign="top">• 담당1<br>• 담당2</td>
+    <td valign="top">• 하드웨어 조립 및 제작<br>• Flutter 앱 프론트엔드 개발</td>
+    <td valign="top">• 프로젝트 멘토<br>• 기술 자문</td>
+  </tr>
+</table> 
  
 ---
  
