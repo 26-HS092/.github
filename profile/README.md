@@ -63,7 +63,7 @@
     <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Roald.png"></td>
     <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Pompom.png"></td>
     <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
-    <td align="center" width="150"><img width="60" height="100" src="assets/member4.png"></td>
+    <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Bob.png"></td>
     <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Maple.png"></td>
     <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
   </tr>
@@ -77,9 +77,9 @@
   </tr>
   <tr>
     <td valign="top">• 하드웨어 기능 개발<br>• 기기용 백엔드 API 설계 및 구현<br>• RAG 기반 기억 검색 구조 구현</td>
-    <td valign="top">• 얼굴 추적 및 표정 감정 인식 모델 학습<br>• LLM 안전 가드레일 및 위험 발화 탐지 구현<br>• 백엔드 API 및 AWS 배포·CI/CD 인프라 구축</td>
+    <td valign="top">• 표정 감정 인식 모델 학습 및 얼굴 추적 기능 개발 <br>• LLM 안전 가드레일 및 위험 발화 탐지 구현<br>• 백엔드 API 및 AWS 배포·CI/CD 인프라 구축</td>
     <td valign="top">• Voice Cloning 기반 TTS 모듈 구현<br>• LLM 연동 및 프롬프트 설계</td>
-    <td valign="top">• 담당1<br>• 담당2</td>
+    <td valign="top">• 서비스 기획 및 핵심 기능 설계<br>• 보호자 앱 UI/UX 초기 기획 및 사용자 경험 설계<br>• Wake Word·VAD·STT 기반 음성 입력 모듈 개발</td>
     <td valign="top">• 하드웨어 조립 및 제작<br>• Flutter 앱 프론트엔드 개발</td>
     <td valign="top">• 프로젝트 멘토<br>• 기술 자문</td>
   </tr>
