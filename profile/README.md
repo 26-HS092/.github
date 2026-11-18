@@ -74,12 +74,12 @@
  
 <table>
   <tr>
-    <td align="center" width="300"><img width="60" height="100" src="./assets/photo/menti1.png"></td>
-    <td align="center" width="300"><img width="60" height="100" src="./assets/photo/menti2.jpg"></td>
-    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
-    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Bob.png"></td>
-    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Maple.png"></td>
-    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
+    <td align="center" width="300"><img width="180" height="100" src="./assets/photo/menti1.png"></td>
+    <td align="center" width="300"><img width="180" height="100" src="./assets/photo/menti2.jpg"></td>
+    <td align="center" width="300"><img width="180" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
+    <td align="center" width="300"><img width="180" height="100" src="https://nooks-list.com/img/villagers/Bob.png"></td>
+    <td align="center" width="300"><img width="180" height="100" src="https://nooks-list.com/img/villagers/Maple.png"></td>
+    <td align="center" width="300"><img width="180" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
   </tr>
   <tr>
     <td align="center"><b>멘티1</b></td>
