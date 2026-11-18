@@ -76,10 +76,9 @@
   <tr>
     <td align="center" width="300"><img width="120" height="160" src="./assets/photo/menti1.png"></td>
     <td align="center" width="300"><img width="120" height="160" src="./assets/photo/menti2.jpg"></td>
-    <td align="center" width="300"><img width="120" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
-    <td align="center" width="300"><img width="120" src="https://nooks-list.com/img/villagers/Bob.png"></td>
-    <td align="center" width="300"><img width="120" src="https://nooks-list.com/img/villagers/Maple.png"></td>
-    <td align="center" width="300"><img width="120" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
+    <td align="center" width="300"><img width="120" src="./assets/photo/menti3.png"></td>
+    <td align="center" width="300"><img width="120" src="./assets/photo/menti4.png"></td>
+    <td align="center" width="300"><img width="120" src="./assets/photo/menti5.png"></td>
   </tr>
   <tr>
     <td align="center"><b>멘티1</b></td>
@@ -87,7 +86,6 @@
     <td align="center"><b>멘티3</b></td>
     <td align="center"><b>멘티4</b></td>
     <td align="center"><b>멘티5</b></td>
-    <td align="center"><b>멘토</b></td>
   </tr>
   <tr>
     <td valign="top">• 하드웨어 기능 개발<br>• 기기용 백엔드 API 설계 및 구현<br>• RAG 기반 기억 검색 구조 구현</td>
@@ -95,7 +93,6 @@
     <td valign="top">• Voice Cloning 기반 TTS 모듈 구현<br>• LLM 연동 및 프롬프트 설계</td>
     <td valign="top">• 서비스 기획 및 핵심 기능 설계<br>• 보호자 앱 UI/UX 초기 기획 및 사용자 경험 설계<br>• Wake Word, VAD, STT 기반 음성 입력 모듈 개발</td>
     <td valign="top">• 하드웨어 조립 및 제작<br>• Flutter 앱 프론트엔드 개발</td>
-    <td valign="top">• 프로젝트 멘토<br>• 기술 자문</td>
   </tr>
 </table> 
  
