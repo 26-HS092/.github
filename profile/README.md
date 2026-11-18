@@ -74,12 +74,12 @@
  
 <table>
   <tr>
-    <td align="center" width="150"><img width="60" height="100" src="./assets/photo/menti1.png"></td>
-    <td align="center" width="150"><img width="60" height="100" src="./assets/photo/menti2.jpg"></td>
-    <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
-    <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Bob.png"></td>
-    <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Maple.png"></td>
-    <td align="center" width="150"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
+    <td align="center" width="300"><img width="60" height="100" src="./assets/photo/menti1.png"></td>
+    <td align="center" width="300"><img width="60" height="100" src="./assets/photo/menti2.jpg"></td>
+    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Dotty.png"></td>
+    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Bob.png"></td>
+    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Maple.png"></td>
+    <td align="center" width="300"><img width="60" height="100" src="https://nooks-list.com/img/villagers/Raymond.png"></td>
   </tr>
   <tr>
     <td align="center"><b>멘티1</b></td>
@@ -202,6 +202,67 @@ AI Hub 감성대화 말뭉치 중 학습에 한 번도 쓰지 않은 대화에�
 - 소형 모델은 KoELECTRA-small을 지식 증류해 int8로 줄인 **14.6MB** 모델로, 라즈베리파이 CPU 한 코어에서 문장당 **약 10ms**에 판정합니다. 인터넷 연결 없이도 동작합니다.
 - 1차 모델과 2차 모델을 같은 문장으로 비교한 McNemar 검정에서, LLM 장애 상황의 위험 재현율은 2차 모델이 유의하게 높았습니다(p<0.001).
 
+<details>
+<summary><b>한 문장이 세 단계를 거치는 실제 로그</b> (<code>demo_risk_pipeline.py</code>)</summary>
+
+<br>
+
+첫 문장은 규칙이 놓친 돌려 말한 자해 표현을 소형 모델과 LLM이 함께 잡아 긴급으로 올린 경우이고, 두 번째 문장은 LLM만 과하게 반응해 '지켜봄'으로 낮춘 경우입니다.
+
+```
+[15:37:35] 🗣️  [1] 어르신: "요즘 자다가 죽기만을 바라며 잠이 들어."
+[15:37:35]   ① 키워드 규칙   — 해당 없음       (2.7ms)
+[15:37:35]   ② 소형 모델     🚨 위험 확률 0.98 (가장 가까운 종류: 자해, 강도 2, 시점 now)  (11ms)
+[15:37:37]   ③ LLM           🚨 자해          (2.6s)
+[15:37:37]   ⇒ 최종 🚨 긴급 (llm+model: 자해) — LLM·모델 모두 위험, 가족에게 즉시 알림
+[15:37:37] 🗣️  [2] 어르신: "죽기 전에 딸을 보고 싶어서 매일 딸에게 전화하지만 딸이 전화를 받지 않아서 걱정돼."
+[15:37:37]   ① 키워드 규칙   — 해당 없음       (0.1ms)
+[15:37:37]   ② 소형 모델     — 위험 확률 0.04 (가장 가까운 종류: 학대, 강도 0, 시점 now)  (17ms)
+[15:37:40]   ③ LLM           🚨 자해          (2.4s)
+[15:37:40]   ⇒ 최종 👀 지켜봄 (llm: 자해) — 모델은 동의 안 함(<0.15), 리포트에만 기록
+```
+
+</details>
+
+<details>
+<summary><b>규칙 판별 테스트 결과</b> (<code>test_safety.py</code>, 89개 모두 통과, 일부 발췌)</summary>
+
+<br>
+
+위험한 말을 잡는 것만큼, 어르신이 매일 쓰는 "힘들어 죽겠네" 같은 말을 위험으로 오해하지 않는 것을 중요하게 봤습니다.
+
+```
+[자해·자살] 잡아야 하는 것
+  ✓ '이제 그만 죽고 싶어' → self_harm
+  ✓ '내가 없어져야 자식들이 편하지' → self_harm
+
+[자해·자살] 걸리면 안 되는 것 — '죽겠다' 는 한국어에서 흔한 강조다
+  ✓ '아이고 힘들어 죽겠네' → None  ← 매일 나올 말
+  ✓ '좋아 죽겠어 손주 온다니까' → None
+
+[자해·자살] 보조용언 '-어버리-' 가 껴도 어미가 기준이다
+  ✓ '죽어버리고 싶어' → self_harm  ← ~고 싶 : 욕구
+  ✓ '힘들어 죽어버리겠네' → None  ← ~겠 : 강조 관용구
+
+[우선순위] '때려치우다' 는 폭력이 아니다
+  ✓ '다 때려치우고 죽어버리고 싶다' → self_harm  ← 학대로 새면 알림이 안 간다
+
+[타해] 자해는 '죽어-', 타해는 '죽여-' — 한 글자 차이다
+  ✓ '저 놈 죽여버리고 싶어' → harm_others
+  ✓ '죽어버리고 싶어' → self_harm  ← 한 글자 차이지만 자해다
+
+[타해] '죽여준다' 는 칭찬이다
+  ✓ '맛이 죽여주네' → None
+
+[의료] 잡아야 하는 것 / 걸리면 안 되는 것
+  ✓ '이 약 두 알 먹어도 되나?' → medical
+  ✓ '아침에 약 먹었어' → None  ← 복용 보고일 뿐
+
+모두 통과
+```
+
+</details>
+
 **4-2. 표정 감정 인식**
 
 AI Hub 「한국인 감정인식을 위한 복합 영상」 데이터로 기쁨, 슬픔, 분노, 불안, 중립의 5감정 모델(EfficientNet-B0)을 학습했습니다. 평가에는 학습 때 한 번도 나오지 않은 사람 747명의 사진 32,642장만 썼습니다. 기존에 쓰던 HSEmotion(서양인 위주 AffectNet 학습 모델)과 같은 5감정 기준으로 비교했습니다.
@@ -217,6 +278,57 @@ AI Hub 「한국인 감정인식을 위한 복합 영상」 데이터로 기쁨,
 
 - macro-F1이 **0.722에서 0.831로** 올랐습니다. 모델 구조는 그대로라 라즈베리파이에서의 추론 속도는 같습니다.
 - 이 데이터에서는 라벨 작업자 한 명이 나머지 두 명의 다수결과 일치하는 비율이 84%라서, 지금 결과가 사실상 데이터가 허용하는 상한에 가깝습니다.
+
+<details>
+<summary><b>학습 로그</b> (Training 8.4만 장, 12 epoch)</summary>
+
+<br>
+
+첫 epoch는 본체를 고정하고 분류기만 학습한 뒤, 이후 전체를 미세조정했습니다. 검증 macro-F1이 가장 높았던 6번째 epoch의 모델을 ONNX로 내보냈습니다.
+
+```
+device=mps  train=83715  val=13157
+[ 1/12] (본체 고정) loss=1.1261 val acc=0.738 macro-F1=0.736  ← best
+[ 2/12] loss=0.7395 val acc=0.823 macro-F1=0.825  ← best
+[ 3/12] loss=0.6653 val acc=0.831 macro-F1=0.834  ← best
+[ 4/12] loss=0.6391 val acc=0.828 macro-F1=0.832
+[ 5/12] loss=0.6128 val acc=0.835 macro-F1=0.839  ← best
+[ 6/12] loss=0.5903 val acc=0.839 macro-F1=0.842  ← best
+[ 7/12] loss=0.5671 val acc=0.830 macro-F1=0.832
+  ...
+[12/12] loss=0.4952 val acc=0.832 macro-F1=0.835
+best epoch 6: val acc=0.839 macro-F1=0.842
+ONNX 저장: models/emotion_ko5.onnx (PyTorch 와 최대 차이 2.7e-06)
+```
+
+</details>
+
+<details>
+<summary><b>혼동 행렬</b> (처음 보는 사람 747명, 32,642장)</summary>
+
+<br>
+
+기존 모델은 슬픔을 분노로(1,025장), 중립을 슬픔으로(1,401장) 헷갈리는 경우가 많았는데, 자체 학습 모델에서 각각 492장, 321장으로 줄었습니다.
+
+```
+━━ HSEmotion (기존) ━━  accuracy=0.720  macro-F1=0.722
+  정답\예측   기쁨    슬픔    분노    불안    중립
+  기쁨        5012     136     111     274      81
+  슬픔          76    5320    1025     616     462
+  분노         122     400    2735     907     357
+  불안          74    1172     525    6043     575
+  중립          51    1401     120     656    4391
+
+━━ emotion_ko5 (자체 학습) ━━  accuracy=0.828  macro-F1=0.831
+  정답\예측   기쁨    슬픔    분노    불안    중립
+  기쁨        5347      60      83      69      55
+  슬픔          45    5953     492     614     395
+  분노          62     270    3730     338     121
+  불안          53     764     788    6360     424
+  중립          53     321     236     377    5632
+```
+
+</details>
 
 ---
 
